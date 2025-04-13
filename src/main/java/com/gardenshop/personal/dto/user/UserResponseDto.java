@@ -1,12 +1,4 @@
 package com.gardenshop.personal.dto.user;
 
-import lombok.Data;
-
-@Data
-public class UserResponseDto {
-    private Long id;
-    private String name;
-    private String email;
-    private String phoneNumber;
-    private String role;
+public record UserResponseDto(Long id, String name, String email, String phoneNumber, String role) {
 }

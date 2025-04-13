@@ -10,20 +10,20 @@ public class UserMapper {
 
     public User toEntity(UserRequestDto dto) {
         User user = new User();
-        user.setName(dto.getName());
-        user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
-        user.setPhoneNumber(dto.getPhoneNumber());
+        user.setName(dto.name());                        // Имя
+        user.setEmail(dto.email());                      // Почта
+        user.setPassword(dto.password());                // Пароль
+        user.setPhoneNumber(dto.phoneNumber());          // Телефон
         return user;
     }
 
     public UserResponseDto toDto(User user) {
-        UserResponseDto dto = new UserResponseDto();
-        dto.setId(user.getId());
-        dto.setName(user.getName());
-        dto.setEmail(user.getEmail());
-        dto.setPhoneNumber(user.getPhoneNumber());
-        dto.setRole(user.getRole().name()); // enum → строка
-        return dto;
+        return new UserResponseDto(
+                user.getId(),                                // ID пользователя
+                user.getName(),                              // Имя
+                user.getEmail(),                             // Почта
+                user.getPhoneNumber(),                       // Телефон
+                user.getRole().name()                        // Роль (enum → String)
+        );
     }
 }

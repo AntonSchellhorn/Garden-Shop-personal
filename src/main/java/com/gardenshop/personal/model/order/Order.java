@@ -1,10 +1,13 @@
 package com.gardenshop.personal.model.order;
 
 import com.gardenshop.personal.model.user.User;
+import com.gardenshop.personal.model.order.OrderItem;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -15,16 +18,23 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    private LocalDateTime orderDate;
+
+    private BigDecimal totalPrice;
 
     private String deliveryAddress;
 
     private String contactPhone;
 
+    private String deliveryMethod;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 }
