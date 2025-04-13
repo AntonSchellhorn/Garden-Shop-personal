@@ -7,5 +7,6 @@ public record OrderRequestDto(
         LocalDateTime orderDate,
         BigDecimal totalPrice,
         String deliveryAddress,
-        String contactPhone     // ← вот это
+        String contactPhone,
+        String deliveryMethod
 ) {}

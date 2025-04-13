@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,4 +32,11 @@ public class OrderController {
     public List<OrderResponseDto> getAllOrders() {
         return orderService.getAllOrders();
     }
+
+    @Operation(summary = "Получить заказы по ID пользователя")
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<OrderResponseDto>> getOrdersByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(orderService.getOrdersByUserId(userId));
+    }
+
 }
