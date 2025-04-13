@@ -30,4 +30,19 @@ public class CategoryController {
     public ResponseEntity<List<CategoryResponseDto>> getAllCategories() {
         return ResponseEntity.ok(categoryService.getAll());
     }
+
+    @Operation(summary = "Обновить категорию по ID")
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryResponseDto> updateCategory(@PathVariable Long id,
+                                                              @RequestBody CategoryRequestDto request) {
+        return ResponseEntity.ok(categoryService.update(id, request));
+    }
+
+    @Operation(summary = "Удалить категорию по ID")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
+        categoryService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
