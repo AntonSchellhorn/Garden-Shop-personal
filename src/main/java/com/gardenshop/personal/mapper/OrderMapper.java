@@ -15,9 +15,11 @@ public class OrderMapper {
         order.setTotalPrice(dto.totalPrice());
         order.setDeliveryAddress(dto.deliveryAddress());
         order.setContactPhone(dto.contactPhone());
+        order.setDeliveryMethod(dto.deliveryMethod()); // ✅ добавлено
         order.setUser(user);
         return order;
     }
+
 
     public OrderResponseDto toDto(Order order) {
         return new OrderResponseDto(
