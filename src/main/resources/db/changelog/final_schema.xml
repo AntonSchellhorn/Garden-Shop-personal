@@ -16,7 +16,9 @@
                 <constraints unique="true" nullable="false"/>
             </column>
             <column name="phone_number" type="VARCHAR(50)"/>
-            <column name="password_hash" type="VARCHAR(255)"/>
+            <column name="password_hash" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="role" type="VARCHAR(50)" defaultValue="CLIENT">
                 <constraints nullable="false"/>
             </column>
@@ -47,6 +49,8 @@
             <column name="discount_price" type="DECIMAL"/>
             <column name="image_url" type="VARCHAR(255)"/>
             <column name="category_id" type="BIGINT"/>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
         </createTable>
         <addForeignKeyConstraint
                 baseTableName="products"
@@ -112,13 +116,13 @@
         <addForeignKeyConstraint
                 baseTableName="cart_items"
                 baseColumnNames="cart_id"
-                constraintName="fk_cartitems_cart"
+                constraintName="fk_cart_items_cart"
                 referencedTableName="carts"
                 referencedColumnNames="id"/>
         <addForeignKeyConstraint
                 baseTableName="cart_items"
                 baseColumnNames="product_id"
-                constraintName="fk_cartitems_product"
+                constraintName="fk_cart_items_product"
                 referencedTableName="products"
                 referencedColumnNames="id"/>
     </changeSet>
@@ -134,6 +138,8 @@
             <column name="total_price" type="DECIMAL"/>
             <column name="delivery_address" type="VARCHAR(255)"/>
             <column name="contact_phone" type="VARCHAR(50)"/>
+            <column name="delivery_method" type="VARCHAR(50)"/>
+            <column name="status" type="VARCHAR(50)"/>
         </createTable>
         <addForeignKeyConstraint
                 baseTableName="orders"
@@ -156,13 +162,13 @@
         <addForeignKeyConstraint
                 baseTableName="order_items"
                 baseColumnNames="order_id"
-                constraintName="fk_orderitems_order"
+                constraintName="fk_order_items_order"
                 referencedTableName="orders"
                 referencedColumnNames="id"/>
         <addForeignKeyConstraint
                 baseTableName="order_items"
                 baseColumnNames="product_id"
-                constraintName="fk_orderitems_product"
+                constraintName="fk_order_items_product"
                 referencedTableName="products"
                 referencedColumnNames="id"/>
     </changeSet>

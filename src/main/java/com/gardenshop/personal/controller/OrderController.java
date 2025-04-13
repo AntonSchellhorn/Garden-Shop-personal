@@ -2,7 +2,7 @@ package com.gardenshop.personal.controller;
 
 import com.gardenshop.personal.dto.order.OrderRequestDto;
 import com.gardenshop.personal.dto.order.OrderResponseDto;
-import com.gardenshop.personal.service.OrderService;
+import com.gardenshop.personal.service.interfaces.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

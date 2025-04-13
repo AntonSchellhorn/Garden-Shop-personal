@@ -1,4 +1,4 @@
-package com.gardenshop.personal.service;
+package com.gardenshop.personal.service.interfaces;
 
 import com.gardenshop.personal.dto.order.OrderRequestDto;
 import com.gardenshop.personal.dto.order.OrderResponseDto;

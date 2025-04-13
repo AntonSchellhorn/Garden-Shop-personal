@@ -9,16 +9,21 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
 
     public User toEntity(UserRequestDto dto) {
-        return new User(dto.name(), dto.email(), dto.password(), dto.phoneNumber());
+        User user = new User();
+        user.setName(dto.name());                        // Имя
+        user.setEmail(dto.email());                      // Почта
+        user.setPassword(dto.password());                // Пароль
+        user.setPhoneNumber(dto.phoneNumber());          // Телефон
+        return user;
     }
 
     public UserResponseDto toDto(User user) {
         return new UserResponseDto(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getPhoneNumber(),
-                user.getRole().name()
+                user.getId(),                                // ID пользователя
+                user.getName(),                              // Имя
+                user.getEmail(),                             // Почта
+                user.getPhoneNumber(),                       // Телефон
+                user.getRole().name()                        // Роль (enum → String)
         );
     }
 }

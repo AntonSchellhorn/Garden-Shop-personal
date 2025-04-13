@@ -1,7 +1,7 @@
 package com.gardenshop.personal.model.order;
 
 import com.gardenshop.personal.model.user.User;
-import com.gardenshop.personal.model.orderitem.OrderItem;
+import com.gardenshop.personal.model.order.OrderItem;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +21,15 @@ public class Order {
     private LocalDateTime orderDate;
 
     private BigDecimal totalPrice;
+
+    private String deliveryAddress;
+
+    private String contactPhone;
+
+    private String deliveryMethod;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
