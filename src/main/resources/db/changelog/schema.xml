@@ -6,7 +6,7 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <!-- USERS -->
-    <changeSet id="01-create-users" author="anton">
+    <changeSet id="01-create-user" author="anton">
         <createTable tableName="users">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -16,7 +16,7 @@
                 <constraints unique="true" nullable="false"/>
             </column>
             <column name="phone_number" type="VARCHAR(50)"/>
-            <column name="password_hash" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
             <column name="role" type="VARCHAR(50)" defaultValue="CLIENT">
                 <constraints nullable="false"/>
             </column>
