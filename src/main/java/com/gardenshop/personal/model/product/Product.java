@@ -32,5 +32,10 @@ public class Product {
     private BigDecimal discountPrice;
 
     private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
+
+    @Column(name = "sales_count")
+    private int salesCount = 0;
+
 }

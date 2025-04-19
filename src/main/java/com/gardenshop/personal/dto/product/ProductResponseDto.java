@@ -9,5 +9,8 @@ public record ProductResponseDto(
         BigDecimal price,
         String imageUrl,
         BigDecimal discountPrice,
-        String categoryName
-) {}
+        String categoryName,
+        Integer salesCount
+) {
+
+}
