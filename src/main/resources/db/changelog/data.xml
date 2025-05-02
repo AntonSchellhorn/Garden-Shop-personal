@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="data-1" author="anton">
+    <insert tableName="categories">
+      <column name="id" value="1"/>
+      <column name="name" value="Садовая техника"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-2" author="anton">
+    <insert tableName="categories">
+      <column name="id" value="2"/>
+      <column name="name" value="Теплицы"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-3" author="anton">
+    <insert tableName="categories">
+      <column name="id" value="3"/>
+      <column name="name" value="Удобрения"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-4" author="anton">
+    <insert tableName="products">
+      <column name="id" value="1"/>
+      <column name="name" value="Газонокосилка Bosch"/>
+      <column name="price" value="149.99"/>
+      <column name="category_id" value="1"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-5" author="anton">
+    <insert tableName="products">
+      <column name="id" value="2"/>
+      <column name="name" value="Мини-теплица для дачи"/>
+      <column name="price" value="89.5"/>
+      <column name="category_id" value="2"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-6" author="anton">
+    <insert tableName="products">
+      <column name="id" value="3"/>
+      <column name="name" value="Комплексное удобрение 5кг"/>
+      <column name="price" value="25.0"/>
+      <column name="category_id" value="3"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-7" author="anton">
+    <insert tableName="users">
+      <column name="id" value="1"/>
+      <column name="name" value="Иван Иванов"/>
+      <column name="email" value="ivan@example.com"/>
+      <column name="phone_number" value="+491234567890"/>
+      <column name="password" value="$2a$10$7QeKzYhZ6E0RMCkYQW0ieei1ZVZOf0v0zbbDcDyYZHf9A9DZq6Yzm"/>
+      <column name="role" value="CLIENT"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-8" author="anton">
+    <insert tableName="users">
+      <column name="id" value="2"/>
+      <column name="name" value="Мария Смирнова"/>
+      <column name="email" value="maria@example.com"/>
+      <column name="phone_number" value="+491234567891"/>
+      <column name="password" value="$2a$10$7QeKzYhZ6E0RMCkYQW0ieei1ZVZOf0v0zbbDcDyYZHf9A9DZq6Yzm"/>
+      <column name="role" value="CLIENT"/>
+    </insert>
+  </changeSet>
+  <changeSet id="data-9" author="anton">
+    <insert tableName="users">
+      <column name="id" value="3"/>
+      <column name="name" value="Админ"/>
+      <column name="email" value="admin@garden.shop"/>
+      <column name="phone_number" value="+499999999999"/>
+      <column name="password" value="$2a$10$7QeKzYhZ6E0RMCkYQW0ieei1ZVZOf0v0zbbDcDyYZHf9A9DZq6Yzm"/>
+      <column name="role" value="ADMIN"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>
