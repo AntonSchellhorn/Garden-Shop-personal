@@ -17,12 +17,12 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(name = "password_hash")
     private String password;
 
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
 }
 

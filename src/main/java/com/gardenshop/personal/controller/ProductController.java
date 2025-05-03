@@ -5,6 +5,7 @@ import com.gardenshop.personal.dto.product.ProductResponseDto;
 import com.gardenshop.personal.service.interfaces.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.create(dto));
     }
 
+//    @PostMapping
+//    public ResponseEntity<ProductResponseDto> create(@Valid @RequestBody ProductRequestDto dto) { ... }
+
     @Operation(summary = "Получить список всех товаров")
     @GetMapping
     public ResponseEntity<List<ProductResponseDto>> findAll() {
@@ -38,6 +42,11 @@ public class ProductController {
                                                      @RequestBody ProductRequestDto dto) {
         return ResponseEntity.ok(productService.update(id, dto));
     }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<ProductResponseDto> update(@PathVariable Long id,
+//                                                     @Valid @RequestBody ProductRequestDto dto) { ... }
+
 
     @Operation(summary = "Удалить товар по ID")
     @DeleteMapping("/{id}")
@@ -75,5 +84,4 @@ public class ProductController {
     public ResponseEntity<List<ProductResponseDto>> getByCategory(@PathVariable Long categoryId) {
         return ResponseEntity.ok(productService.getByCategoryId(categoryId));
     }
-
 }

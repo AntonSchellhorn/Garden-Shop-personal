@@ -1,23 +1,21 @@
-package com.gardenshop.personal.converter;
+package com.gardenshop.personal.mapper;
 
 import com.gardenshop.personal.dto.product.ProductRequestDto;
 import com.gardenshop.personal.dto.product.ProductResponseDto;
-import com.gardenshop.personal.model.category.Category;
 import com.gardenshop.personal.model.product.Product;
-import lombok.RequiredArgsConstructor;
+import com.gardenshop.personal.model.category.Category;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class ProductConverter {
+public class ProductMapper {
 
-    public Product toEntity(ProductRequestDto dto, Category category) {
+    public Product toEntity(ProductRequestDto requestDto, Category category) {
         Product product = new Product();
-        product.setName(dto.name());
-        product.setDescription(dto.description());
-        product.setPrice(dto.price());
-        product.setImageUrl(dto.imageUrl());
-        product.setDiscountPrice(dto.discountPrice());
+        product.setName(requestDto.name());
+        product.setDescription(requestDto.description());
+        product.setPrice(requestDto.price());
+        product.setDiscountPrice(requestDto.discountPrice());
+        product.setImageUrl(requestDto.imageUrl());
         product.setCategory(category);
         return product;
     }
@@ -35,4 +33,3 @@ public class ProductConverter {
         );
     }
 }
-
