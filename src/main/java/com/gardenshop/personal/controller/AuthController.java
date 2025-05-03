@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@Tag(name = "Аутентификация", description = "Логин пользователей через JWT")
+@Tag(name = "Аутентификация", description = "Эндпоинты для логина пользователей через JWT")
 public class AuthController {
 
     private final AuthService authService;
 
-    @Operation(summary = "Вход по email и паролю")
+    @Operation(summary = "Авторизация пользователя по email и паролю. Возвращает JWT токен.")
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto request) {
         String token = authService.login(request);

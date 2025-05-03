@@ -15,25 +15,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/orders")
 @RequiredArgsConstructor
-@Tag(name = "Заказы", description = "Создание и получение заказов")
+@Tag(name = "Заказы", description = "Операции по созданию, просмотру и обновлению заказов")
 public class OrderController {
 
     private final OrderService orderService;
 
-    @Operation(summary = "Создать заказ")
+    @Operation(summary = "Создать новый заказ")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrderResponseDto createOrder(@RequestBody OrderRequestDto orderRequestDto) {
         return orderService.createOrder(orderRequestDto);
     }
 
-    @Operation(summary = "Получить список всех заказов")
+    @Operation(summary = "Получить все заказы")
     @GetMapping
-    public List<OrderResponseDto> getAllOrders() {
-        return orderService.getAllOrders();
+    public ResponseEntity<List<OrderResponseDto>> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
     }
 
-    @Operation(summary = "Получить заказы по ID пользователя")
+    @Operation(summary = "Получить заказы пользователя по его ID")
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<OrderResponseDto>> getOrdersByUser(@PathVariable Long userId) {
         return ResponseEntity.ok(orderService.getOrdersByUserId(userId));
