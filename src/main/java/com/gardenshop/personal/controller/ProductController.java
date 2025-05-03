@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
-@Tag(name = "Товары", description = "Добавление, просмотр, редактирование и удаление товаров")
+@Tag(name = "Товары", description = "Операции с товарами: добавление, редактирование, удаление, фильтрация")
 public class ProductController {
 
     private final ProductService productService;
@@ -46,7 +46,7 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Фильтрация и сортировка товаров")
+    @Operation(summary = "Фильтрация и сортировка товаров по параметрам")
     @GetMapping("/filter")
     public ResponseEntity<List<ProductResponseDto>> filterProducts(
             @RequestParam(required = false) Long categoryId,
@@ -64,7 +64,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.getById(id));
     }
 
-    @Operation(summary = "Получить список товаров со скидкой")
+    @Operation(summary = "Получить товары со скидкой")
     @GetMapping("/discounted")
     public ResponseEntity<List<ProductResponseDto>> getDiscounted() {
         return ResponseEntity.ok(productService.getDiscounted());
@@ -75,5 +75,4 @@ public class ProductController {
     public ResponseEntity<List<ProductResponseDto>> getByCategory(@PathVariable Long categoryId) {
         return ResponseEntity.ok(productService.getByCategoryId(categoryId));
     }
-
 }

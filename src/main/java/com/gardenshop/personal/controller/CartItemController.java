@@ -14,27 +14,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/cart-items")
 @RequiredArgsConstructor
-@Tag(name = "Cart Items", description = "Managing items inside the shopping cart")
+@Tag(name = "Товары в корзине", description = "Управление товарами внутри корзины")
 public class CartItemController {
 
     private final CartItemService cartItemService;
 
-    // Добавление товара в корзину
-    @Operation(summary = "Add item to cart")
+    @Operation(summary = "Добавить товар в корзину", description = "Добавляет новый товар в корзину")
     @PostMapping
     public ResponseEntity<CartItemResponseDto> add(@RequestBody CartItemRequestDto dto) {
         return ResponseEntity.ok(cartItemService.add(dto));
     }
 
-    // Получение всех товаров по ID корзины
-    @Operation(summary = "Get all items by cart ID")
+    @Operation(summary = "Получить все товары по ID корзины", description =
+            "Возвращает список товаров в указанной корзине")
     @GetMapping("/cart/{cartId}")
     public ResponseEntity<List<CartItemResponseDto>> getByCartId(@PathVariable Long cartId) {
         return ResponseEntity.ok(cartItemService.getByCartId(cartId));
     }
 
-    // Увеличение количества товара в корзине
-    @Operation(summary = "Increase item quantity in cart")
+    @Operation(summary = "Увеличить количество товара", description =
+            "Увеличивает количество товара в корзине на заданное значение")
     @PatchMapping("/{id}/increase")
     public ResponseEntity<CartItemResponseDto> increaseQuantity(
             @PathVariable Long id,
@@ -42,8 +41,8 @@ public class CartItemController {
         return ResponseEntity.ok(cartItemService.increaseQuantity(id, amount));
     }
 
-    // Уменьшение количества товара в корзине
-    @Operation(summary = "Decrease item quantity in cart")
+    @Operation(summary = "Уменьшить количество товара", description =
+            "Уменьшает количество товара в корзине на заданное значение")
     @PatchMapping("/{id}/decrease")
     public ResponseEntity<CartItemResponseDto> decreaseQuantity(
             @PathVariable Long id,
@@ -51,8 +50,8 @@ public class CartItemController {
         return ResponseEntity.ok(cartItemService.decreaseQuantity(id, amount));
     }
 
-    // Полное удаление товара из корзины
-    @Operation(summary = "Remove item from cart completely")
+    @Operation(summary = "Удалить товар из корзины", description =
+            "Полностью удаляет товар из корзины")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         cartItemService.deleteById(id);

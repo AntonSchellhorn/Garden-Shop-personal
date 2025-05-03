@@ -14,18 +14,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/favorites")
 @RequiredArgsConstructor
-@Tag(name = "Избранное", description = "Добавление и получение избранных товаров")
+@Tag(name = "Избранное", description = "Управление списком избранных товаров")
 public class FavoriteController {
 
     private final FavoriteService favoriteService;
 
-    @Operation(summary = "Добавить товар в избранное")
+    @Operation(summary = "Добавить в избранное", description = "Добавляет товар в избранное для пользователя")
     @PostMapping
     public ResponseEntity<FavoriteResponseDto> add(@RequestBody FavoriteRequestDto dto) {
         return ResponseEntity.ok(favoriteService.add(dto));
     }
 
-    @Operation(summary = "Получить список всех избранных товаров")
+    @Operation(summary = "Получить избранное", description = "Возвращает список всех избранных товаров пользователя")
     @GetMapping
     public ResponseEntity<List<FavoriteResponseDto>> findAll() {
         return ResponseEntity.ok(favoriteService.findAll());
