@@ -14,20 +14,48 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/cart-items")
 @RequiredArgsConstructor
-@Tag(name = "Товары в корзине", description = "Добавление и просмотр товаров в корзине")
+@Tag(name = "Cart Items", description = "Managing items inside the shopping cart")
 public class CartItemController {
 
     private final CartItemService cartItemService;
 
-    @Operation(summary = "Добавить товар в корзину")
+    // Добавление товара в корзину
+    @Operation(summary = "Add item to cart")
     @PostMapping
     public ResponseEntity<CartItemResponseDto> add(@RequestBody CartItemRequestDto dto) {
         return ResponseEntity.ok(cartItemService.add(dto));
     }
 
-    @Operation(summary = "Получить все товары по ID корзины")
+    // Получение всех товаров по ID корзины
+    @Operation(summary = "Get all items by cart ID")
     @GetMapping("/cart/{cartId}")
     public ResponseEntity<List<CartItemResponseDto>> getByCartId(@PathVariable Long cartId) {
         return ResponseEntity.ok(cartItemService.getByCartId(cartId));
+    }
+
+    // Увеличение количества товара в корзине
+    @Operation(summary = "Increase item quantity in cart")
+    @PatchMapping("/{id}/increase")
+    public ResponseEntity<CartItemResponseDto> increaseQuantity(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "1") int amount) {
+        return ResponseEntity.ok(cartItemService.increaseQuantity(id, amount));
+    }
+
+    // Уменьшение количества товара в корзине
+    @Operation(summary = "Decrease item quantity in cart")
+    @PatchMapping("/{id}/decrease")
+    public ResponseEntity<CartItemResponseDto> decreaseQuantity(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "1") int amount) {
+        return ResponseEntity.ok(cartItemService.decreaseQuantity(id, amount));
+    }
+
+    // Полное удаление товара из корзины
+    @Operation(summary = "Remove item from cart completely")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        cartItemService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

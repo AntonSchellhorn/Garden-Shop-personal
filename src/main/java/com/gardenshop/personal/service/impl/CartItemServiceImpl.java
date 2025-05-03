@@ -24,6 +24,7 @@ public class CartItemServiceImpl implements CartItemService {
     private final ProductRepository productRepository;
     private final CartItemConverter cartItemConverter;
 
+    // Добавление товара в корзину
     @Override
     public CartItemResponseDto add(CartItemRequestDto dto) {
         Cart cart = cartRepository.findById(dto.cartId())
@@ -36,11 +37,49 @@ public class CartItemServiceImpl implements CartItemService {
         return cartItemConverter.toDto(cartItemRepository.save(cartItem));
     }
 
+    // Получение всех товаров по ID корзины
     @Override
     public List<CartItemResponseDto> getByCartId(Long cartId) {
         return cartItemRepository.findAll().stream()
                 .filter(cartItem -> cartItem.getCart().getId().equals(cartId))
                 .map(cartItemConverter::toDto)
                 .toList();
+    }
+
+    // Увеличение количества товара в корзине
+    @Override
+    public CartItemResponseDto increaseQuantity(Long id, int amount) {
+        // Находим товар по ID
+        CartItem item = cartItemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("CartItem not found"));
+        // Увеличиваем количество
+        item.setQuantity(item.getQuantity() + amount);
+        // Сохраняем изменения
+        return cartItemConverter.toDto(cartItemRepository.save(item));
+    }
+
+    // Уменьшение количества товара в корзине
+    @Override
+    public CartItemResponseDto decreaseQuantity(Long id, int amount) {
+        // Находим товар по ID
+        CartItem item = cartItemRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("CartItem not found"));
+
+        int newQuantity = item.getQuantity() - amount;
+        if (newQuantity > 0) {
+            // Уменьшаем количество, если оно остаётся положительным
+            item.setQuantity(newQuantity);
+            return cartItemConverter.toDto(cartItemRepository.save(item));
+        } else {
+            // Если количество становится ноль или меньше — удаляем товар из корзины
+            cartItemRepository.delete(item);
+            return null;
+        }
+    }
+
+    // Полное удаление товара из корзины
+    @Override
+    public void deleteById(Long id) {
+        cartItemRepository.deleteById(id);
     }
 }

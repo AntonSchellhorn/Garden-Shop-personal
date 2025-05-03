@@ -72,4 +72,11 @@
       <column name="role" value="ADMIN"/>
     </insert>
   </changeSet>
+  <changeSet id="add-delivery-fields-to-orders" author="anton">
+    <addColumn tableName="orders">
+      <column name="delivery_company" type="varchar(255)"/>
+      <column name="tracking_link" type="text"/>
+    </addColumn>
+  </changeSet>
+
 </databaseChangeLog>
