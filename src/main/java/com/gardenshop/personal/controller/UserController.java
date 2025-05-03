@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
-@Tag(name = "Пользователи", description = "Регистрация и управление аккаунтами")
+@Tag(name = "Пользователи", description = "Регистрация новых аккаунтов")
 public class UserController {
 
     private final UserService userService;
 
-    @Operation(summary = "Регистрация нового пользователя")
+    @Operation(summary = "Зарегистрировать нового пользователя")
     @PostMapping("/register")
     public ResponseEntity<UserResponseDto> register(@RequestBody UserRequestDto request) {
-        UserResponseDto response = userService.register(request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(userService.register(request));
     }
 }
