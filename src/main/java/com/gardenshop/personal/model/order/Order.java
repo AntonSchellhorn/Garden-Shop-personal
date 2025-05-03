@@ -1,7 +1,6 @@
 package com.gardenshop.personal.model.order;
 
 import com.gardenshop.personal.model.user.User;
-import com.gardenshop.personal.model.order.OrderItem;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,23 +17,27 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime orderDate;
+    private LocalDateTime orderDate; // Дата оформления
 
-    private BigDecimal totalPrice;
+    private BigDecimal totalPrice;   // Общая сумма заказа
 
-    private String deliveryAddress;
+    private String deliveryAddress;  // Адрес доставки
 
-    private String contactPhone;
+    private String contactPhone;     // Телефон для связи
 
-    private String deliveryMethod;
+    private String deliveryMethod;   // Метод доставки (самовывоз, курьер и т.д.)
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private OrderStatus status;      // Статус заказа (AWAITING_PAYMENT, PAID и т.д.)
+
+    private String deliveryCompany;  // Название службы доставки (например, DHL, СДЭК)
+
+    private String trackingLink;     // Ссылка на отслеживание (если есть)
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user;               // Пользователь, оформивший заказ
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems; // Позиции в заказе
 }

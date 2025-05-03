@@ -1,5 +1,6 @@
 package com.gardenshop.personal.model.order;
 
+import java.math.BigDecimal;
 import com.gardenshop.personal.model.product.Product;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -22,4 +23,6 @@ public class OrderItem {
     private Product product;
 
     private int quantity;
+
+    private BigDecimal price; // ✅ цена товара на момент покупки
 }

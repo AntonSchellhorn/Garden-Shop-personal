@@ -7,16 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderItemMapper {
 
-    public OrderItemResponseDto toDto(OrderItem orderItem) {
+    // Преобразование OrderItem → OrderItemResponseDto
+    public OrderItemResponseDto toDto(OrderItem item) {
         return new OrderItemResponseDto(
-                orderItem.getId(),
-                orderItem.getOrder().getId(),
-                orderItem.getProduct().getId(),
-                orderItem.getProduct().getName(),
-                orderItem.getQuantity()
+                item.getId(),                          // ID позиции
+                item.getOrder().getId(),               // ID заказа
+                item.getProduct().getId(),             // ID товара
+                item.getProduct().getName(),           // Название товара
+                item.getQuantity(),                    // Количество
+                item.getPrice()                        // Цена за единицу
         );
-
-
-
     }
 }

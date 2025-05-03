@@ -173,4 +173,12 @@
                 referencedColumnNames="id"/>
     </changeSet>
 
+    <!-- ДОБАВЛЕНИЕ delivery_company и tracking_link -->
+    <changeSet id="09-add-delivery-fields" author="anton">
+        <addColumn tableName="orders">
+            <column name="delivery_company" type="VARCHAR(255)"/>
+            <column name="tracking_link" type="TEXT"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

@@ -39,4 +39,10 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrdersByUserId(userId));
     }
 
+    @Operation(summary = "Обновить заказ по ID")
+    @PutMapping("/{id}")
+    public ResponseEntity<OrderResponseDto> updateOrder(@PathVariable Long id,
+                                                        @RequestBody OrderRequestDto requestDto) {
+        return ResponseEntity.ok(orderService.updateOrder(id, requestDto));
+    }
 }

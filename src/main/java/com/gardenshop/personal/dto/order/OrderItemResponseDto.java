@@ -1,10 +1,13 @@
 package com.gardenshop.personal.dto.order;
 
-public record OrderItemResponseDto(
-        Long id,
-        Long orderId,
-        Long productId,      // ← вот это
-        String productName,
-        int quantity
-) {}
+import java.math.BigDecimal;
 
+public record OrderItemResponseDto(
+        Long id,               // ID позиции
+        Long orderId,          // ID заказа
+        Long productId,        // ID товара
+        String productName,    // Название
+        int quantity,          // Кол-во
+        BigDecimal price       // Цена за штуку
+) {
+}
